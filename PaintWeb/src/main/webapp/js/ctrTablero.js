@@ -96,7 +96,7 @@ function saveImg(){
 }
 
 function selectLapiz(){
-    tablero.style.cursor="url('img/lapiz.gif'),default";
+    tablero.style.cursor="url('img/lapiz.png'),default";
     swithAccion="dibujar";
 }
 function selectBorrador(){

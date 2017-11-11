@@ -19,9 +19,43 @@ and open the template in the editor.
 
 .tam{
     border: 1px solid #000;
+    width: 100%;
+    text-align: center;
 }
 
 .tamIconos{
     width: 48px;
     height: 41px;
+    cursor: pointer;
+}
+
+.panel{
+    border: 1px solid #ccc;
+}
+.panel td{
+    border: 1px solid #ccc;
+    width:48px;
+    text-align: center;
+}
+
+#dropdownMenu1 > div{
+    width: 48px;
+    margin-bottom: 4px;
+}
+.linea2{
+    border: 1px solid #000;
+}
+.linea4{
+    border: 2px solid #000;
+}
+.linea6{
+    border: 3px solid #000;
+}
+.linea10{    
+    border: 4px solid #000;
+}
+input[type=color]{
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
 }

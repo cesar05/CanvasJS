@@ -4,32 +4,58 @@
         <title>Paint Web</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" type="text/css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <meta name="viewport" content="width=device-width; initial-scale=1.0">
     </head>
     <body>
         <canvas id="tablero" width="600" height="400">
-            
+
         </canvas>
         <br/>
-        <span id="msj"></span>
-        <br/>
-        <label>Color</label>
-        <input type="color" onchange="cambiarColor(this.value)" />
-        <label>Tamaño</label>
-        <select class="tam" onchange="cambiarTam(this.value)">
-            <option value="2">2</option>
-            <option value="4">4</option>
-            <option value="6">6</option>
-            <option value="10">10</option>
-        </select>
-        <button type="button" onclick="selectLapiz()" title="Lapiz">
-            <img src="img/lapiz.gif" alt="Lapiz" class="tamIconos" />
-        </button>
-        <button type="button" onclick="selectBorrador()" title="Borrar">
-            <img src="img/borrador.png" alt="Borrar" class="tamIconos"/>
-        </button>
-        <a id="save" href="#" download="canvas.png" onclick="saveImg()">Guardar</a>
-        
+        <table class="panel">
+            <caption><span id="msj"></span></caption>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="color" onchange="cambiarColor(this.value)" /><br/>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <div class="linea2"/></div>
+                                <div class="linea4"/></div>
+                                <div class="linea6"/></div>
+                                <div class="linea10"/></div>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li onclick="cambiarTam(2)"><a href="#"><div class="linea2"/></div></a></li>
+                                <li onclick="cambiarTam(4)"><a href="#"><div class="linea4"/></div></a></li>
+                                <li onclick="cambiarTam(6)"><a href="#"><div class="linea6"/></div></a></li>
+                                <li onclick="cambiarTam(10)"><a href="#"><div class="linea10"/></div></a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <button  class="btn btn-default" onclick="selectLapiz()" title="Lapiz">
+                            <img src="img/lapiz.png" alt="Lapiz" class="tamIconos" />
+                        </button>
+                    </td>
+                    <td>
+                        <button  class="btn btn-default" onclick="selectBorrador()" title="Borrar">
+                            <img src="img/borrador.png" alt="Borrar" class="tamIconos"/>
+                        </button>
+
+                    </td>
+                    <td>
+                        <a id="save" href="#" download="canvas.png" onclick="saveImg()" title="Guardar">
+                            <span class="glyphicon glyphicon-save btn-lg"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script src="js/ctrTablero.js"></script>
         <script src="js/clienteWebSocket.js"></script>
     </body>
