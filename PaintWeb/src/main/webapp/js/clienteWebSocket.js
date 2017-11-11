@@ -18,8 +18,13 @@ websocket.onmessage=function(evt){
     else if(json.finDibujarOtroCliente!==undefined && json.finDibujarOtroCliente===true){
         finDibujarOtroCliente();
     }
-    else{
-        dibujarOtrosClientes(json);
+    else if(json.accion!==undefined){ 
+        if(json.accion==="dibujar"){
+            dibujarOtrosClientes(json);
+        }
+        else if(json.accion==="borrar"){
+            borrarDibujoOtroCliente(json);
+        }        
     }
     
 };

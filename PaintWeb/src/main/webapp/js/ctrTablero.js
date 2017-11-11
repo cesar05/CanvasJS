@@ -50,6 +50,7 @@ function dibujar(x,y){
     ctx.lineTo(x,y);
     ctx.stroke(); // Lo transforma en dibujo a línea.
     sendData(JSON.stringify({
+        "accion":"dibujar",
         "color":this.color,
         "tam":this.tam,
         "coords":{
@@ -74,8 +75,12 @@ function dibujarOtrosClientes(json){
     ctx.lineTo(json.coords.x,json.coords.y);
     ctx.stroke(); // Lo transforma en dibujo a línea.
 }
+function borrarDibujoOtroCliente(json){
+    ctx.clearRect(json.coords.x,json.coords.y,json.tam,json.tam);
+}
 function borrarDibujo(x,y){
     ctx.clearRect(x,y,this.tam,this.tam);
+    sendData(JSON.stringify({"accion":"borrar","tam":this.tam,"coords":{"x":x,"y":y}}));
 }
 function cambiarColor(color){
     this.color=color;    
