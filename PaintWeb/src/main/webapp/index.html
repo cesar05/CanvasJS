@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width; initial-scale=1.0">
     </head>
     <body>
-        <canvas id="tablero">
+        <canvas id="tablero" width="600" height="400">
             
         </canvas>
         <br/>
@@ -22,6 +22,14 @@
             <option value="6">6</option>
             <option value="10">10</option>
         </select>
+        <button type="button" onclick="selectLapiz()" title="Lapiz">
+            <img src="img/lapiz.gif" alt="Lapiz" class="tamIconos" />
+        </button>
+        <button type="button" onclick="selectBorrador()" title="Borrar">
+            <img src="img/borrador.png" alt="Borrar" class="tamIconos"/>
+        </button>
+        <a id="save" href="#" download="canvas.png" onclick="saveImg()">Guardar</a>
+        
         <script src="js/ctrTablero.js"></script>
         <script src="js/clienteWebSocket.js"></script>
     </body>

@@ -10,8 +10,18 @@ var wsUri="ws://"+document.location.host+
 var websocket=new WebSocket(wsUri);
 var msj=document.getElementById("msj");
 
-websocket.onmessage=function(evt){    
-    dibujarOtrosClientes(JSON.parse(evt.data));
+websocket.onmessage=function(evt){
+    var json=JSON.parse(evt.data);
+    if(json.iniDibujarOtroCliente!==undefined && json.iniDibujarOtroCliente===true){
+        iniDibujarOtroCliente(json);
+    }
+    else if(json.finDibujarOtroCliente!==undefined && json.finDibujarOtroCliente===true){
+        finDibujarOtroCliente();
+    }
+    else{
+        dibujarOtrosClientes(json);
+    }
+    
 };
 
 websocket.onopen=function(evt){

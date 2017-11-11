@@ -5,37 +5,96 @@
  */
 var tablero=document.getElementById("tablero");
 var ctx=tablero.getContext("2d");
-var color="#000"
+var color="#000";
 var tam="2";
+var swithDibujar=false;
+var swithAccion="";
 ctx.fillStyle=color;
 
 tablero.onmousemove=function(event){
+    if(!this.swithDibujar)return;
+    if(swithAccion==="dibujar"){
+        dibujar(event.clientX,event.clientY);
+    }
+    else if(swithAccion==="borrar"){
+        borrarDibujo(event.clientX,event.clientY);
+    }
+};
+
+tablero.onmousedown=function(event){
+    this.swithDibujar=true;
     var x=event.clientX;
     var y=event.clientY;
-    dibujar(x,y);
-    //console.log(x+"-"+y);
+    //Iniciar el dibujo
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    //Notificar inicio de dibujo
+    sendData(JSON.stringify({
+        "iniDibujarOtroCliente":true,
+        "coords":{"x":x,"y":y}
+    }));
+};
+tablero.onmouseup=function(event){
+    this.swithDibujar=false;
+    //Notificar fin de dibujo
+    sendData(JSON.stringify({
+        "finDibujarOtroCliente":true
+    }));
+    //Finalizar Dibujo
+    ctx.closePath();
 };
 
 function dibujar(x,y){
-    ctx.fillStyle=this.color;
-    ctx.fillRect(x,y,this.tam,this.tam);
-    json=JSON.stringify({
-        "color":ctx.fillStyle,
-        "tam":tam,
+    ctx.strokeStyle=this.color;
+    ctx.lineWidth=this.tam;
+    ctx.lineTo(x,y);
+    ctx.stroke(); // Lo transforma en dibujo a línea.
+    sendData(JSON.stringify({
+        "color":this.color,
+        "tam":this.tam,
         "coords":{
             "x":x,
             "y":y
         }
-    });
-    sendData(json);
+    }));
+}
+
+//inicio de dibujo otro usuario
+function iniDibujarOtroCliente(json){
+    ctx.beginPath();
+    ctx.moveTo(json.coords.x,json.coords.y);
+}
+//fin de dibujo otro usuario
+function finDibujarOtroCliente(){
+    ctx.closePath();
 }
 function dibujarOtrosClientes(json){
-    ctx.fillStyle=json.color;
-    ctx.fillRect(json.coords.x,json.coords.y,json.tam,json.tam);
+    ctx.strokeStyle=json.color;
+    ctx.lineWidth=json.tam;
+    ctx.lineTo(json.coords.x,json.coords.y);
+    ctx.stroke(); // Lo transforma en dibujo a línea.
+}
+function borrarDibujo(x,y){
+    ctx.clearRect(x,y,this.tam,this.tam);
 }
 function cambiarColor(color){
     this.color=color;    
 }
 function cambiarTam(tam){
     this.tam=tam;
+}
+
+//Guardar dibujo como imagen
+function saveImg(){
+    var save=document.getElementById("save");
+    save.href=tablero.toDataURL("image/png");
+}
+
+function selectLapiz(){
+    tablero.style.cursor="url('img/lapiz.gif'),default";
+    swithAccion="dibujar";
+}
+function selectBorrador(){
+    tablero.style.cursor="url('img/borrador.png'),default";
+    swithAccion="borrar";
 }
