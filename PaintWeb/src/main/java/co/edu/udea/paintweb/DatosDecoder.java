@@ -14,7 +14,7 @@ import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
 /**
- *
+ * Clase encargada de decodificar
  * @author Cesar
  */
 public class DatosDecoder implements Decoder.Text<Datos>{

@@ -10,7 +10,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 
 /**
- *
+ * Clase POJO encarga de manejar la informacion que se envia y recibe desde los usuarios
  * @author Cesar
  */
 public class Datos {

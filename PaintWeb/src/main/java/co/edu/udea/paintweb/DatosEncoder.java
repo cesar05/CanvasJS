@@ -10,7 +10,7 @@ import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
 /**
- *
+ * Clase encargada de codificar los datos
  * @author Cesar
  */
 public class DatosEncoder implements Encoder.Text<Datos>{
