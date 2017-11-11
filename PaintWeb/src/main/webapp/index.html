@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Paint Web</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    </head>
+    <body>
+        <canvas id="tablero">
+            
+        </canvas>
+        <br/>
+        <span id="msj"></span>
+        <br/>
+        <label>Color</label>
+        <input type="color" onchange="cambiarColor(this.value)" />
+        <label>Tamaño</label>
+        <select class="tam" onchange="cambiarTam(this.value)">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="10">10</option>
+        </select>
+        <script src="js/ctrTablero.js"></script>
+        <script src="js/clienteWebSocket.js"></script>
+    </body>
+</html>
